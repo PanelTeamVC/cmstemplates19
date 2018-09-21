@@ -1,0 +1,102 @@
+<div class="content-header row">
+    <div class="content-header-left col-md-6 col-12 mb-1">
+
+      <h3 class="content-header-title">{{subcate}}</h3>
+    </div>
+    <div class="content-header-right breadcrumbs-right breadcrumbs-top col-md-6 col-12">
+      <div class="breadcrumb-wrapper col-12">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a>Inicio</a>
+          </li>
+          <li class="breadcrumb-item">
+              <a>Establecidas Esíka</a>
+            </li>
+          <li class="breadcrumb-item active">{{subcate}}</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+ 
+  <div class="content-detached">
+    <div class="content-body">
+      <section class="row" *ngIf= "templates?.length > 0; else noItems">
+  
+        <div class="col-sm-3" *ngFor="let template of templates" >
+          <div class="card">
+            
+              <div class="card-body">
+                  <p class="card-text"><small>{{template.nombre}}</small><br>
+                  <small>Campaña: {{template.campania}}</small></p>
+                 
+                  <div class="text-center"> 
+                    <img class="card-img-top mb-1 img-fluid" [src]="'https://s3.amazonaws.com/somosbelcorp/Virtual_Coach/contenedortemplates/images/' + template.nombre + '.jpg'" alt="{{template.nombre}}" (click)="openModal(customContent)"  style="cursor: pointer">
+                  </div>
+                  <!-- <h4 class="card-title">L0070_EM_EK_ESK_LabialRadiance(Todos)_ES.html</h4> -->
+               
+                  <!-- <hr> -->
+                  <!-- Progreso -->
+                  <!-- <div class="category-title pb-1">
+                    <h6>Progress</h6>
+                  </div>
+                  <div>
+                    <div class="progress progress-sm mt-1 mb-0">
+                      <div class="progress-bar bg-success" role="progressbar" style="width: 40%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="progress progress-sm mt-1 mb-0">
+                      <div class="progress-bar bg-danger" role="progressbar" style="width: 60%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="progress progress-sm mt-1 mb-0">
+                      <div class="progress-bar bg-info" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div> -->
+               
+                  <!-- <hr> -->
+
+                  <ng-template #customContent let-c="close" let-d="dismiss">
+                    
+                    <div class="modal-header">
+                        <h4 class="modal-title">{{template.nombre}}</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- <iframe src="./assets/template/{{template.nombre}}.html" width="100%" height="600px" frameborder="0"> </iframe> -->
+                        <iframe width="100%" height="700" [src]="'./assets/template/' + template.nombre + '.html' | safe"></iframe>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Close</button>
+                    </div>
+                </ng-template>
+              
+
+                  <div class="sidebar-category">
+                      <div class="row">
+                        <div class="col-6">
+                          <button class="btn btn-danger btn-block btn-sm" (click)="openModal(customContent)">Previa</button>
+                          <!-- <button class="btn btn-lg btn-outline-primary" (click)="openModal(customContent)">Previa-</button> -->
+                        </div>
+                        <div class="col-6">
+                          <a href="" [href]="'./assets/template/' + template.nombre + '.zip'" type="submit" class="btn btn-info btn-block btn-sm">Descarga</a>
+                        </div>
+                      </div>
+                  </div>
+
+                </div>
+          </div>
+        </div>
+      
+        <ng-template #noItems>
+            <p> No hay mails... </p>
+        </ng-template>
+
+      
+   
+      </section>
+  
+  
+  
+    </div>
+  </div>
+  
